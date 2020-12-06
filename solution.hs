@@ -2,9 +2,6 @@
 
 module Main where
 
-main :: IO ()
-main = interact $ show . multPair . findSum 2020 . readInts . words
-
 multPair :: Maybe (Int, Int) -> Int
 multPair Nothing = 0
 multPair (Just (x, y)) = x * y
@@ -26,3 +23,6 @@ findDouble [] = Nothing
 findDouble ((x, y):xs)
   | (y, x) `elem` xs = Just (x, y)
   | otherwise = findDouble xs
+
+main :: IO ()
+main = interact $ show . multPair . findSum 2020 . readInts . words
