@@ -13,7 +13,7 @@ data Passport = Passport { birthYear    :: Int,
                            hairColour   :: String,
                            eyeColour    :: String,
                            pId          :: String,
-                           cId          :: Maybe String
+                           cId          :: String
                          } deriving (Show)
 
 
@@ -39,8 +39,7 @@ readPass s = do
   eC <- lookup "ecl" m
   p <- lookup "pid" m
   c <- lookup "cid" m
-
-  return (Passport bY, iY, eY, h, hC, eC, p, c)
+  return $ Just $ Passport bY iY eY h hC eC p c
   where
     m = (fromList . fst . last . readP_to_S pairParser) s
 
